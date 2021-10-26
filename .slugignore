@@ -1,5 +1,4 @@
 # Heres a comment
-*.pkl
 *.pdf
 /static
 /spec
