@@ -66,7 +66,7 @@ def upload_file():
         bytes = request.files['imageUpload'].read()
         img = load_image_bytes(bytes)
     res = predict(img)
-    #print(res)
+    print(res)
     return jsonify(res)
 
 
