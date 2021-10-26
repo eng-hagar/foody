@@ -1,5 +1,5 @@
 # Heres a comment
-*.psd
+*.pkl
 *.pdf
-/test
+/static
 /spec
