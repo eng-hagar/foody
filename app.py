@@ -102,7 +102,7 @@ def before_request():
     app.jinja_env.cache = {}
 
 
-model = load_model('models')
+model = load_model('./models')
 
 
 
