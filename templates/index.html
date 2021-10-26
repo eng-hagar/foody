@@ -1,0 +1,245 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
+    <title>Home - FOODY AI</title>
+    <script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <link rel="stylesheet" href="/static/bootstrap/css/bootstrap.min.css">
+    <link rel="stylesheet"
+          href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i">
+    <link rel="stylesheet" href="/static/fonts/fontawesome-all.min.css">
+    <link rel="stylesheet" href="/static/fonts/font-awesome.min.css">
+    <link rel="stylesheet" href="/static/fonts/fontawesome5-overrides.min.css">
+
+    <script src="/static/js/textInputURL.js"></script>
+
+    <link type="text/css" rel="stylesheet" href="/static/bootstrap/css/custom.css"/>
+</head>
+
+<body id="page-top">
+<div id="wrapper">
+    <nav class="navbar navbar-dark align-items-start sidebar sidebar-dark accordion bg-gradient-primary p-0">
+        <div class="container-fluid d-flex flex-column p-0"><a
+                class="navbar-brand d-flex justify-content-center align-items-center sidebar-brand m-0" href="#">
+            <div class="sidebar-brand-icon rotate-n-15"><i class="fas fa-utensils"></i></div>
+            <div class="sidebar-brand-text mx-3"><span>FOODY AI</span></div>
+        </a>
+            <hr class="sidebar-divider my-0">
+            <ul class="navbar-nav text-light" id="accordionSidebar">
+                <li class="nav-item"><a class="nav-link active" href="/"><i class="fa fa-home"></i><span>Home</span></a>
+                </li>
+                <li class="nav-item"><a class="nav-link" href="/demo"><i class="fa fa-mobile"></i><span>Demo</span></a>
+                </li>
+                <li class="nav-item"><a class="nav-link" href="/about"><i
+                        class="fa fa-info-circle"></i><span>About</span></a></li>
+            </ul>
+            <div class="text-center d-none d-md-inline">
+                <button class="btn rounded-circle border-0" id="sidebarToggle" type="button"></button>
+            </div>
+        </div>
+    </nav>
+    <div class="d-flex flex-column" id="content-wrapper">
+        <div id="content">
+            <nav class="navbar navbar-light navbar-expand bg-white shadow mb-4 topbar static-top">
+                <h3 class="text-dark mb-1" style="margin-left: 2rem"><strong>FOODY AI</strong> Web Application</h3>
+            </nav>
+            <div class="container-fluid">
+
+                <div class="row">
+                    <h2 style="color: darkblue">Classify Food Images Using Deep Learning</h2>
+                </div>
+
+
+                <div class="row">
+                    <div class="col-lg-12 col-xl-12">
+                        <div class="card shadow mb-4">
+                            <div class="card-header d-flex justify-content-between align-items-center">
+                                <h6 class="text-primary fw-bold m-0">Prediction Form</h6>
+                            </div>
+
+                            <div class="myrow">
+                                <div class=" column card-body">
+                                    <div class="chart-area">
+                                        <form enctype="multipart/form-data" id="form">
+                                            <div class="form-group">
+                                                <div><label style="color: black">Enter a URL or Select one image from
+                                                    the
+                                                    following Sample Menu</label>
+                                                    <div>
+                                                        <ul class="navbar-nav flex-nowrap ms-auto arrow-down">
+
+                                                            <li class="nav-item dropdown ">
+                                                                <div class="nav-item dropdown "><a
+                                                                        class="dropdown-toggle nav-link btn btn-primary me-2 text-black-600 "
+                                                                        aria-expanded="false" data-bs-toggle="dropdown"
+                                                                        href="#">Sample Menu</a>
+                                                                    <div class="dropdown-menu shadow dropdown-menu-end ">
+                                                                        <a class="dropdown-item"
+                                                                           href="https://upload.wikimedia.org/wikipedia/commons/thumb/b/ba/Lasagne_-_stonesoup.jpg/1200px-Lasagne_-_stonesoup.jpg"
+                                                                           onclick="getURL(event,this)">&nbsp;lasagne</a><a
+                                                                            class="dropdown-item"
+                                                                            href="https://upload.wikimedia.org/wikipedia/commons/6/60/Sushi_platter.jpg"
+                                                                            onclick="getURL(event,this)">&nbsp;sushi</a>
+                                                                        <a class="dropdown-item"
+                                                                           href="https://upload.wikimedia.org/wikipedia/commons/5/5b/Waffles_with_Strawberries.jpg"
+                                                                           onclick="getURL(event,this)">&nbsp;waffles</a>
+                                                                        <a class="dropdown-item"
+                                                                           href="https://upload.wikimedia.org/wikipedia/commons/thumb/7/76/Solanum_melongena_24_08_2012_%281%29.JPG/1280px-Solanum_melongena_24_08_2012_%281%29.JPG"
+                                                                           onclick="getURL(event,this)">&nbsp;eggplant
+                                                                            (not in training
+                                                                            data)</a>
+                                                                        <a class="dropdown-item"
+                                                                           href="https://image.shutterstock.com/image-photo/brown-light-wooden-round-dining-260nw-588358070.jpg"
+                                                                           onclick="getURL(event,this)">&nbsp;table (not
+                                                                            in training &amp;
+                                                                            not a food)</a>
+
+                                                                    </div>
+                                                                </div>
+                                                            </li>
+                                                        </ul>
+
+
+                                                    </div>
+
+                                                    <label for="fileText"> URL</label>
+                                                    <input id="fileText" name="url" type="text" class="form-control"
+                                                           value="">
+
+
+                                                </div>
+                                            </div>
+
+                                            <div id="upload_button" class="form-group">
+                                                <label style="color: black"><br>Or Upload an Image from your
+                                                    device</label>
+
+
+                                            </div>
+
+                                            <div><label for="imageUpload"><br>
+                                                <input name="file" class="form-control-file" type="file"
+                                                       id="imageUpload"
+                                                       accept="image/*" onchange="loadFile(event)"> </label></div>
+
+
+                                            <div class="form-group">
+                                                <p><br></p>
+                                                <button type="button" class="btn btn-success" id="predict"> Predict
+                                                </button>
+                                                <span class="p-1 "></span>
+                                                <button id="btn-reset" type="button" class="btn btn-danger"
+                                                        onclick="reset($('#file'))"> Clear
+                                                </button>
+                                            </div>
+                                        </form>
+
+
+                                    </div>
+                                </div>
+
+                                <div class=" column form-group " style="text-align: center">
+                                    <img style="  width: 300px;   height: 300px; position: relative; border: 5px solid #F8F8F8;
+                                       box-shadow: 0px 2px 4px 0px rgba(0, 0, 0, 0.1);margin-top: 1em;margin-bottom: 1em;"
+                                         id="output" hidden/>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+
+
+                <div id="results" class="row" style="visibility: hidden">
+                    <div class="col-lg-6 mb-4">
+                        <div class="card shadow mb-4">
+                            <div class="card-header py-3">
+                                <h6 class="text-primary fw-bold m-0">Prediction Results</h6>
+                            </div>
+                            <div class="card-body" id="barresults">
+
+
+                                {#
+
+
+                                <h4 class="small fw-bold">{{ classone }}<span class="float-end">20%</span></h4>
+                                <div class="progress mb-4">
+                                    <div class="progress-bar bg-danger" aria-valuenow="20" aria-valuemin="0"
+                                         aria-valuemax="100" style="width: 20%;"></div>
+                                </div>
+                                <h4 class="small fw-bold">{{ classtwo }}<span class="float-end">40%</span></h4>
+                                <div class="progress mb-4">
+                                    <div class="progress-bar bg-warning" aria-valuenow="40" aria-valuemin="0"
+                                         aria-valuemax="100" style="width: 40%;"><span
+                                            class="visually-hidden">40%</span></div>
+                                </div>
+                                <h4 class="small fw-bold">{{ classthree }}<span class="float-end">60%</span></h4>
+                                <div class="progress mb-4">
+                                    <div class="progress-bar bg-primary" aria-valuenow="60" aria-valuemin="0"
+                                         aria-valuemax="100" style="width: 60%;"><span
+                                            class="visually-hidden">60%</span></div>
+                                </div>
+                                <h4 class="small fw-bold">{{ classfour }}<span class="float-end">80%</span></h4>
+                                <div class="progress mb-4">
+                                    <div class="progress-bar bg-info" aria-valuenow="80" aria-valuemin="0"
+                                         aria-valuemax="100" style="width: 80%;"><span
+                                            class="visually-hidden">80%</span></div>
+                                </div>
+                                <h4 class="small fw-bold">{{ classfive }}<span class="float-end">Complete!</span></h4>
+                                <div class="progress mb-4">
+                                    <div class="progress-bar bg-success" aria-valuenow="100" aria-valuemin="0"
+                                         aria-valuemax="100" style="width: 100%;"><span
+                                            class="visually-hidden">100%</span></div>
+                                </div>#}
+                            </div>
+                        </div>
+
+                    </div>
+                    <div class="col-lg-6 md-4">
+                        <div class="card shadow mb-4">
+                            <div class="card-header d-flex justify-content-between align-items-center">
+                                <h6 class="text-primary fw-bold m-0">Pie Chart of the Prediction Results</h6>
+
+                            </div>
+                            <div class="card-body">
+
+                                <div class="container" id="graph-container">
+                                </div>
+
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <footer class="bg-white sticky-footer">
+            <div class="container my-auto">
+                <div class="text-center my-auto copyright"><span>Copyright © Hagar Hussein, 2021</span></div>
+            </div>
+        </footer>
+    </div>
+    <a class="border rounded d-inline scroll-to-top" href="#page-top"><i class="fas fa-angle-up"></i></a>
+</div>
+<script src="/static/bootstrap/js/bootstrap.min.js"></script>
+<script src="/static/js/chart.min.js"></script>
+<script src="/static/js/bs-init.js"></script>
+<script src="/static/js/theme.js"></script>
+<script src="/static/js/fileBrowse.js"></script>
+
+
+<script src="/static/js/sampleMenu.js"></script>
+
+
+<script src="/static/js/clearBtn.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.2.1/Chart.js"></script>
+
+<script src="/static/js/predictBtn.js"></script>
+
+</body>
+
+</html>
