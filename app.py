@@ -4,8 +4,10 @@ from io import BytesIO
 from typing import List, Dict, Union, ByteString, Any
 import os
 
-
+import base64
 from flask import Flask, render_template, redirect, request, send_file , jsonify
+from flask_cors import CORS, cross_origin
+
 
 from fastai import *
 from fastai.vision import *
@@ -17,6 +19,8 @@ from PIL import Image
 
 app = Flask(__name__)
 
+cors = CORS(app)
+app.config['CORS_HEADERS'] = 'Content-Type'
 
 
 
@@ -52,6 +56,32 @@ def predict(img, n: int = 3) -> Dict[str, Union[str, List]]:
     predictions = sorted(predictions, key=lambda x: x["output"], reverse=True)
     predictions = predictions[0:n]
     return {"class": str(pred_class), "predictions": predictions}
+
+
+
+
+@app.route('/appapi/classify',methods=['POST'])
+@cross_origin()
+def upload_fileapp():
+    print("request")
+
+
+    d = json.loads(request.data)
+    print(d['base'])
+    image_data = re.sub('^data:image/.+;base64,', '', d['base'])
+    print(image_data)
+    bytes = base64.b64decode(image_data)
+    #print(bytes)
+    img = load_image_bytes(bytes)
+    res = predict(img)
+    print(res)
+
+
+    return jsonify(res)
+
+
+
+
 
 
 @app.route('/api/classify', methods=['POST', 'GET'])
